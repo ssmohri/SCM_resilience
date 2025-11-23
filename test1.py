@@ -171,13 +171,13 @@ if page == "Basic (Resilience definition)":
         if step > 1:
             if st.button("⬅ Previous", key="p1_prev"):
                 st.session_state.step_p1 -= 1
-                st.experimental_rerun()
+                st.rerun()
     
     with col_next:
         if step < 3:
             if st.button("Next ➜", key="p1_next"):
                 st.session_state.step_p1 += 1
-                st.experimental_rerun()
+                st.rerun()
 
 
 # =========================================================
@@ -192,7 +192,7 @@ elif page == "Basic (Resilience Example)":
     # Optional restart button
     if st.button("Restart Page"):
         st.session_state.page2_step = 1
-        st.experimental_rerun()
+        st.rerun()
 
     # ========== STEP 1 ==========
     if st.session_state.page2_step == 1:
@@ -212,7 +212,7 @@ elif page == "Basic (Resilience Example)":
         # NEXT button only
         if st.button("Next ➜"):
             st.session_state.page2_step = 2
-            st.experimental_rerun()
+            st.rerun()
 
     # ========== STEP 2 (final step — ONLY Previous) ==========
     elif st.session_state.page2_step == 2:
@@ -235,7 +235,7 @@ elif page == "Basic (Resilience Example)":
         # ONLY Previous button (no next page)
         if st.button("⬅ Previous"):
             st.session_state.page2_step = 1
-            st.experimental_rerun()
+            st.rerun()
 
 # =========================================================
 # PAGE 3 — DATA ANALYTICS DEFINITION (Step-by-step reveal)
@@ -249,7 +249,7 @@ elif page == "Basic (Data analytics definition)":
     # Reset button (optional)
     if st.button("Restart Page"):
         st.session_state.page3_step = 1
-        st.experimental_rerun()
+        st.rerun()
 
     step = st.session_state.page3_step
 
@@ -271,7 +271,7 @@ elif page == "Basic (Data analytics definition)":
         if step == 1:
             if st.button("Next ➜"):
                 st.session_state.page3_step = 2
-                st.experimental_rerun()
+                st.rerun()
 
     # ============================
     # STEP 2 (append after Step 1)
@@ -292,11 +292,11 @@ elif page == "Basic (Data analytics definition)":
         with col_prev:
             if st.button("⬅ Previous"):
                 st.session_state.page3_step = 1
-                st.experimental_rerun()
+                st.rerun()
         with col_next:
             if st.button("Next ➜"):
                 st.session_state.page3_step = 3
-                st.experimental_rerun()
+                st.rerun()
 
     # ============================
     # STEP 3 (final step — hide ALL previous)
@@ -325,7 +325,7 @@ elif page == "Basic (Data analytics definition)":
         # Only PREVIOUS button (last step)
         if st.button("⬅ Previous"):
             st.session_state.page3_step = 2
-            st.experimental_rerun()
+            st.rerun()
 
 
 
@@ -341,7 +341,7 @@ elif page == "Opportunities":
     # Optional restart
     if st.button("Restart Page", key="p4_restart"):
         st.session_state.page4_step = 1
-        st.experimental_rerun()
+        st.rerun()
 
     step = st.session_state.page4_step
 
@@ -370,7 +370,7 @@ elif page == "Opportunities":
 
         if st.button("Next ➜", key="p4_next1"):
             st.session_state.page4_step = 2
-            st.experimental_rerun()
+            st.rerun()
 
     # ============================
     # STEP 2 — Second Image + References
@@ -401,7 +401,7 @@ elif page == "Opportunities":
 
         if st.button("⬅ Previous", key="p4_prev2"):
             st.session_state.page4_step = 1
-            st.experimental_rerun()
+            st.rerun()
 
 
 
@@ -618,7 +618,7 @@ elif page == "Quiz":
                 st.session_state.last_feedback = ""
                 st.session_state.username_set = False
                 st.session_state.score_saved = False
-                st.experimental_rerun()
+                st.rerun()
 
     # ---------- STEP 1.5: Ask username ----------
     elif not st.session_state.username_set:
@@ -644,13 +644,13 @@ elif page == "Quiz":
                 else:
                     st.session_state.username = username_input.strip()
                     st.session_state.username_set = True
-                    st.experimental_rerun()
+                    st.rerun()
 
         with colB:
             if st.button("Back to scenarios"):
                 st.session_state.quiz_started = False
                 st.session_state.selected_hazard = None
-                st.experimental_rerun()
+                st.rerun()
 
     # ---------- STEP 2: Quiz ----------
     else:
@@ -701,7 +701,7 @@ elif page == "Quiz":
                             f"❌ Not quite. The correct answer is **{correct_type}** analytics in the **{correct_phase}** phase."
                         )
                     st.session_state.answered = True
-                    st.experimental_rerun()
+                    st.rerun()
 
             # After submit, show feedback + Next button
             else:
@@ -711,7 +711,7 @@ elif page == "Quiz":
                     st.session_state.current_q += 1
                     st.session_state.answered = False
                     st.session_state.last_feedback = ""
-                    st.experimental_rerun()
+                    st.rerun()
 
         # ---------- END OF QUIZ ----------
         else:
@@ -779,7 +779,7 @@ elif page == "Quiz":
                 st.session_state.username = ""
                 st.session_state.username_set = False
                 st.session_state.score_saved = False
-                st.experimental_rerun()
+                st.rerun()
 
 
 # =========================================================
@@ -902,7 +902,7 @@ elif page == "Dynamic re-routing":
 
         if st.button("Next ➜ Start the game"):
             st.session_state.dr_step = 2
-            st.experimental_rerun()
+            st.rerun()
 
     # -------------------------------------------------------
     # STEP 2 — Main Game
@@ -983,7 +983,7 @@ elif page == "Dynamic re-routing":
                 visited.add(nxt)
                 st.session_state.dr_visited = visited
 
-            st.experimental_rerun()
+            st.rerun()
 
         # Up
         row1 = st.columns([1, 1, 1])
@@ -1020,13 +1020,13 @@ elif page == "Dynamic re-routing":
                     st.session_state.dr_visited = {
                         n for n in route if n in retailers
                     }
-                    st.experimental_rerun()
+                    st.rerun()
 
         with colR:
             if st.button("Reset route"):
                 st.session_state.dr_route = [warehouse]
                 st.session_state.dr_visited = set()
-                st.experimental_rerun()
+                st.rerun()
 
         # -----------------------------------------
         # Completion logic
@@ -1050,7 +1050,7 @@ elif page == "Dynamic re-routing":
                 st.session_state.dr_route = [warehouse]
                 st.session_state.dr_visited = set()
                 st.info("Some links are now closed (red). Re-route to complete the task.")
-                st.experimental_rerun()
+                st.rerun()
 
             # Second pass (reroute)
             else:
@@ -1074,4 +1074,5 @@ elif page == "Dynamic re-routing":
                     st.session_state.dr_closed = set()
                     st.session_state.dr_initial_dist = None
                     st.session_state.dr_reroute_dist = None
-                    st.experimental_rerun()
+                    st.rerun()
+
